@@ -1,0 +1,1 @@
+export PATH=/home/localadmin/.nvm/versions/node/v16.14.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/localadmin/Android/Sdk/emulator:/home/localadmin/Android/Sdk/tools:/home/localadmin/Android/Sdk/tools/bin:/home/localadmin/Android/Sdk/platform-tools://home/localadmin/Downloads/mongodb/bin
