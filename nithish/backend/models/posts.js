@@ -4,6 +4,7 @@ const QuestionSchema = new mongoose.Schema({
         score:Number,
         category:String,
         level:String,
+        qid:Number,
         description: String,
         correct_answer: String, 
         incorrect_answers: [
