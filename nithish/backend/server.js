@@ -123,7 +123,10 @@ app.post('/signup', async (req, res) => {
     });
     try{
         const emailExist=await User.findOne({"email":email})
-        if(!emailExist){
+        if(email == null && password == null && name == null){
+            res.status(400).send("please enter required details");
+        }
+        else if(!emailExist){
             isvalid = true;
             const savedUser =await user.save();
             res.status(400).send(isvalid);

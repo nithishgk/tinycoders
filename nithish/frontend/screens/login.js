@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useState } from "react";
-import { Text, StyleSheet, View, TextInput, TouchableOpacity, SafeAreaView } from "react-native";
+import { Text, StyleSheet, View, TextInput, TouchableOpacity, SafeAreaView,ImageBackground,Image } from "react-native";
 import 'react-native-gesture-handler';
 import Title from "../components/title";
 
@@ -8,8 +8,9 @@ const Login = ({navigation}) => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [isValid, setIsValid] = useState(false);
+    const [exp, setExp] = useState(false);
     const submitData = () => {
-        fetch('http://10.9.3.24:2001/login',{
+        fetch('http://172.17.0.1:2001/login',{
             method : "post",
             headers:{
                 'Content-Type':'application/json',
@@ -21,6 +22,12 @@ const Login = ({navigation}) => {
         })
         .then(res=>res.json())
         .then(data => setIsValid(data))
+        setExp(true);
+        if(exp == true){
+            validate();
+        }
+    }
+    const validate = () => {
         if(isValid == true){
             navigation.navigate('Home');
         }
@@ -28,18 +35,23 @@ const Login = ({navigation}) => {
             alert("Invalid username/password");
         }
     }
+    const img=require('../assets/imgg.jpg');
     return(
         <SafeAreaView style={styles.parentContainer}>
             <View style={styles.container}>
-                <Title titleText="LOGIN"/>
+            <ImageBackground source={img} style={styles.imgbg} >
+            <View style={styles.logocomakeit}>
+                <Image  source={require('../assets/comakeit.png') }resizeMode="contain" />
+                </View>
+                {/*<Text style={styles.logtext}>LOGIN</Text>*/}
                 <View style={styles.loginContainer}>    
-                    <Text style={styles.inputText}>Enter username:</Text>
+                    <Text style={styles.inputText}>Email-id:</Text>
                     <TextInput style={styles.inputTextBox}
                         placeholder="abc@gmail.com"
                         value={userName}
                         onChangeText = {(userName) => setUserName(userName)}
                     />
-                    <Text style={styles.inputText}>Enter Password:</Text>
+                    <Text style={styles.inputText}>Password:</Text>
                     <TextInput style={styles.inputTextBox}
                         secureTextEntry={ true }
                         value={password}
@@ -62,6 +74,10 @@ const Login = ({navigation}) => {
                         <Text style={styles.needAnAccount}>Need an account? SIGNUP</Text>
                     </TouchableOpacity>
                 </View>
+                <View style={styles.logocontainer}>
+                <Image  source={require('../assets/tiny.jpg') }resizeMode="contain" />
+                </View>
+                </ImageBackground>
             </View>
         </SafeAreaView>
     )
@@ -71,13 +87,21 @@ export default Login;
 
 const styles = StyleSheet.create({
     parentContainer: {
-        padding: 20,
+        //padding: 50,
         backgroundColor: '#1b4332',
         height: '100%',
+        width:"100%",
     },
     container: {
         height: '100%',
         alignSelf: 'center',
+        //fontColor:'white',
+        fontWeight:'bold',
+    },
+    imgbg: {
+        flex:1,
+        //width:"100%",
+        padding:100,
     },
     inputTextBox: {
         borderWidth: 1,
@@ -85,6 +109,9 @@ const styles = StyleSheet.create({
         padding: 8,
         margin: 10,
         width: 250,
+        borderRadius:30,
+        color:'white',
+        fontSize:15,
     },
     inputText: {
         color: 'white',
@@ -117,7 +144,32 @@ const styles = StyleSheet.create({
         textDecorationLine: "underline",
     },
     loginContainer: {
-        paddingTop: 20,
+        //paddingTop: 20,
     },
+    logtext:{
+        fontSize:30,
+        fontWeight:'bold',
+        alignItems:'center',
+        color:'white',
+        alignSelf:'center',
+    },
+    logocontainer:{
+        //height:"10%",
+        //width:"10%",
+        //flex:1,
+        //padding:30,
+       // margin:30
+       alignItems:'center',
+       //paddingTop:30,
+        
+    },
+    logocomakeit:{
+        alignItems:'center',
+        alignSelf:'center',
+        //paddingTop:10,
+        paddingBottom:20,
+    }
+    
+    
     
 })

@@ -49,7 +49,7 @@ const Quiz = ({navigation,route}) => {
     const getQuiz = async () => {
         setIsLoading(true)
        //console.log("Nithish");
-       var url = 'http://10.9.3.24:2001/questions/' + category + '/' + level ;
+       var url = 'http://172.17.0.1:2001/questions/' + category + '/' + level ;
        
         try{
             const res = await fetch(url);
@@ -117,7 +117,7 @@ const Quiz = ({navigation,route}) => {
     }
 
     const submitData = () => {
-        fetch('http://10.9.3.24:2001/score',{
+        fetch('http://172.17.0.1:2001/score',{
             method : "post",
             headers:{
                 'Content-Type':'application/json',

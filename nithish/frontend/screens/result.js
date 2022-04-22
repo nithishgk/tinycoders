@@ -36,7 +36,7 @@ const Result = ({navigation, route}) => {
         );
     }
     else{
-        const resultImage = score > pass ? "https://c.tenor.com/HAGXdX-X-1cAAAAM/no1-happy.gif" : "https://cdn.dribbble.com/users/1675407/screenshots/14430321/oops_.gif"
+        const resultImage = score <= pass ? "https://cdn.dribbble.com/users/1675407/screenshots/14430321/oops_.gif" : "https://c.tenor.com/HAGXdX-X-1cAAAAM/no1-happy.gif"
         return (
             <View style={styles.container}>
             <ImageBackground source={img} style={styles.imgbg}>
